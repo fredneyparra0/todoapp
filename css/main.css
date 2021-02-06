@@ -83,6 +83,9 @@ hr {
 .container-list a:hover {
     color: hsl(234, 39%, 85%);
 }
+.object-left {
+    display: none;
+}
 
 
 .show {
