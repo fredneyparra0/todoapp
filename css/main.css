@@ -6,10 +6,16 @@
 }
 
 body {
-    background-color: hsl(235, 21%, 11%);
-    background-image: url(../images/bg-desktop-dark.jpg);
     background-repeat: no-repeat;
     background-size: contain;
+}
+body.theme-light {
+    background-color: #fafafa;
+    background-image: url(../images/bg-desktop-light.jpg);
+}
+body.theme-dark {
+    background-color: hsl(235, 21%, 11%);
+    background-image: url(../images/bg-desktop-dark.jpg);
 }
 
 .container {
@@ -30,6 +36,9 @@ body {
     font-weight: 700;
     color: white;
     letter-spacing: 4px;
+}
+.title img {
+    cursor: pointer;
 }
 
 /*=======================
@@ -56,6 +65,23 @@ hr {
 /*=======================
 =======   ITEMS LIST ALL
 =======================*/
+
+.items-list-all {
+    border-radius: 5px;
+}
+.items-list-all .item:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.items-list-all .item:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+body.theme-light .items-list-all {
+    box-shadow: 0px 0px 5px 0px #a1a1a1;
+}
+
+
 .item {
     display: flex;
     justify-content: space-between;
@@ -69,6 +95,22 @@ hr {
 .items-container {
     display: flex;
     align-items: center;
+}
+.item-bottom {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+body.theme-light div.item,
+body.theme-light div.space-one {
+    background-color: #ffffff;
+    border-bottom: 1px solid #E6E5EA;
+}
+body.theme-light div:not(.actions).item:hover {
+    background-color: #ececec;
+}
+body.theme-light div.items-container .link-item {
+    color: #585769 !important;
 }
 /*=======================
 =======   ULTIMATE ITEM
@@ -90,8 +132,8 @@ hr {
     opacity: 0;
     animation: opacity 1s;
 }
-.item:hover {
-    border: 1px solid gray;
+.item:not(.actions):hover {
+    background-color: #726995;
     cursor: pointer;
 }
 .item:hover .clear-item {

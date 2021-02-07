@@ -1,0 +1,3 @@
+export const THEME_PROPS_LS = "themeActivated",
+    CLASS_NAME_THEME = { dark: "theme-dark", light: "theme-light" },
+    THEME_CLASS_DEFAULT = CLASS_NAME_THEME.dark;
