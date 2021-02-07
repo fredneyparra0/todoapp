@@ -9,7 +9,7 @@ body {
     background-color: hsl(235, 21%, 11%);
     background-image: url(../images/bg-desktop-dark.jpg);
     background-repeat: no-repeat;
-    max-width: 1330px;
+    background-size: contain;
 }
 
 .container {
@@ -39,15 +39,16 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 30px 0 20px 0;
-    padding: 25px;
+    padding: 5px 25px;
     background-color: hsl(235, 24%, 19%);
     border-radius: 4px;
     color: white;
+    height: 55px;
 }
 .link-item {
     text-decoration: none;
     color: white;
-    padding-left: 10px;
+    margin-left: 20px;
 }
 hr {
     border: 1px solid hsl(237, 14%, 26%);
@@ -58,10 +59,12 @@ hr {
 .item {
     display: flex;
     justify-content: space-between;
-    padding: 25px;
+    padding: 5px 25px;
     background-color: hsl(235, 24%, 19%);
-    border-radius: 4px;
     color: white;
+    height: 55px;
+    align-items: center;
+    border: 1px solid transparent;
 }
 .items-container {
     display: flex;
@@ -83,80 +86,69 @@ hr {
 .container-list a:hover {
     color: hsl(234, 39%, 85%);
 }
-.object-left {
-    display: none;
+.clear-item {
+    opacity: 0;
+    animation: opacity 1s;
+}
+.item:hover {
+    border: 1px solid gray;
+    cursor: pointer;
+}
+.item:hover .clear-item {
+    opacity: 1;
 }
 
-
-.show {
-    border: 1px solid hsl(233, 14%, 35%);
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-}
+/*=======================
+=======   CHECKBOX
+=======================*/
 .checkbox {
-    display: none;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #4d5066;
+    border-radius: 20px;
+    bottom: 2px;
 }
-.object {
+.checkbox--square {
+    border-radius: 3px;
+}
+.checkbox input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkbox > .checkbox-check {
+    opacity: 0;
+}
+
+.checkbox > .checkbox-check {
+    transition: all .1s ease-in-out;
+    transform: scale(0);
+}
+
+.checkbox input.checkbox-input:checked + span.checkbox-check {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#57ddff, #c058f3);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    border-radius: inherit;
+    transform: scale(1);
+}
+
+.checkbox .checkbox-check::before {
+    content: "";
     display: inline-block;
-    width: 25px;
-    height: 25px;
-    margin-right: .5rem;
-    background-size: cover;
-    background-image: 1px solid linear-gradient(
-        hsl(192, 100%, 67%),
-        hsl(280, 87%, 65%)/*,
-        url(../images/icon-sun.svg)*/
-    );
-}
-.checkbox:checked + .show {
-    background-image: 
-    linear-gradient(
-        hsl(192, 100%, 67%),
-        hsl(280, 87%, 65%)/*,
-        url(../images/icon-sun.svg)*/
-    );
-    /*url(../images/icon-cross.svg);*/
-    
-    background-size: cover;
-    background-position: center;
-    border: 1px solid hsl(235, 24%, 19%);
-}
-
-.custom-radio-checkbox__show--checkbox {
-    border: 1px solid hsl(233, 14%, 35%);;
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-}
-
-.custom-radio-checkbox__input {
-    display: none;
-}
-.custom-radio-checkbox__show {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    margin-right: .5rem;
-    background-size: cover;
-    background-image: 1px solid linear-gradient(
-        hsl(192, 100%, 67%),
-        hsl(280, 87%, 65%)/*,
-        url(../images/icon-sun.svg)*/
-    );
-}
-
-.custom-radio-checkbox__input:checked + .custom-radio-checkbox__show--checkbox {
-    background-image: 
-    linear-gradient(
-        hsl(192, 100%, 67%),
-        hsl(280, 87%, 65%)/*,
-        url(../images/icon-sun.svg)*/
-    );
-    /*url(../images/icon-cross.svg);*/
-    
-    background-size: cover;
-    background-position: center;
-    border: 1px solid hsl(235, 24%, 19%);;
+    width: 12px;
+    height: 4px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(315deg);
+    position: absolute;
+    top: 10px;
+    left: 8px;
 }
 
