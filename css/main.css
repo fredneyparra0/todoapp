@@ -110,7 +110,7 @@ body.theme-light div:not(.actions).item:hover {
     background-color: #ececec;
 }
 body.theme-light div.items-container .link-item {
-    color: #585769 !important;
+    color: #585769 
 }
 /*=======================
 =======   ULTIMATE ITEM
@@ -163,12 +163,10 @@ body.theme-light div.items-container .link-item {
 .checkbox > .checkbox-check {
     opacity: 0;
 }
-
 .checkbox > .checkbox-check {
     transition: all .1s ease-in-out;
     transform: scale(0);
 }
-
 .checkbox input.checkbox-input:checked + span.checkbox-check {
     width: 100%;
     height: 100%;
@@ -180,7 +178,6 @@ body.theme-light div.items-container .link-item {
     border-radius: inherit;
     transform: scale(1);
 }
-
 .checkbox .checkbox-check::before {
     content: "";
     display: inline-block;
@@ -194,3 +191,17 @@ body.theme-light div.items-container .link-item {
     left: 8px;
 }
 
+@media (max-width: 1023px) {
+    .container {
+        width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        background-size: inherit;
+    }
+    .container { 
+        width: 85%;
+    }
+}
