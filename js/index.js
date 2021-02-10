@@ -34,3 +34,4 @@ function setTheme(newTheme) {
     }.svg`)
     currentTheme = newTheme;
 }
+

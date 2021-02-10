@@ -18,18 +18,15 @@
     </div>
 
     <div class="agregar">
-      <div class="agregar__container">
-        <label class="agregar__checkbox checkbox--square">
-          <input class="agregar__input" type="checkbox">
+      <div class="agregar__container size">
+        <label class="agregar__checkbox lineal checkbox--square">
+          <input class="agregar__input" type="checkbox" id="checkbox-agregar">
           <span class="agregar__span"></span>
         </label>
-        <a class="agregar__link" href="#">Create a new Todo...</a>
+        <input class="agregar__input-text" placeholder="Insert text new item" type="text" id="inputAgregar">
       </div>  
-      <a class="agregar__link-icon" href="#">
-        <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
       </a>
     </div>
-
     
     <div class="items-list-all">
       <div class="item">
@@ -141,21 +138,14 @@
         </div>
       </div>
     </div>
+    <div class="title-final">
+      <p class="title-final__parrafo">
+        Drag and drop to reader list
+      </p>
+    </div>
   </div>
 
-
-  <div style="height: 50px; width: 50px; background-color: hsl(235, 21%, 11%); border: 1px solid red;"></div>
-  <div style="height: 50px; width: 50px; background-color: hsl(235, 24%, 19%);"></div>
-  <div style="height: 50px; width: 50px; background-color: hsl(234, 39%, 85%);"></div>
-  <div style="height: 50px; width: 50px; background-color: hsl(236, 33%, 92%);"></div>
-  <div style="height: 50px; width: 50px; background-color: hsl(234, 11%, 52%);"></div>
-  <div style="height: 50px; width: 50px; background-color: hsl(233, 14%, 35%);"></div>
-  <div style="height: 50px; width: 50px; background-color: hsl(237, 14%, 26%);"></div>
-  <div style="height: 50px; width: 50px; background-color: hsl(220, 98%, 61%);"></div>
-  <div style="height: 50px; width: 50px; background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);"></div>
-  <div style="height: 50px; width: 50px; background: linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%))"></div>
-
-  <script src="./js/index.js" type="module"></script>
-  </div>
+  <script src="js/index.js" type="module"></script>
+</div>
 </body>
 </html>
