@@ -23,83 +23,87 @@
           <input class="agregar__input" type="checkbox" id="checkbox-agregar">
           <span class="agregar__span"></span>
         </label>
-        <input class="agregar__input-text" placeholder="Insert text new item" type="text" id="inputAgregar">
+        <form class="agregar__formulario" id="formularioAgregar">
+          <input class="agregar__input-text" placeholder="Insert text new item" type="text" id="inputAgregar">
+        </form>
       </div>  
       </a>
     </div>
     
-    <div class="items-list-all">
-      <div class="item">
-        <div class="agregar__container">
-          <label class="agregar__checkbox">
-            <input class="agregar__input" type="checkbox">
-            <span class="agregar__span"></span>
-          </label>
-          <a class="agregar__link" href="#">Complete online course javaScript</a>
-        </div>  
-        <a class="agregar__link-icon" href="#">
-          <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
-        </a>
-      </div>
-      <div class="item">
-        <div class="agregar__container">
-          <label class="agregar__checkbox">
-            <input class="agregar__input" type="checkbox">
-            <span class="agregar__span"></span>
-          </label>
-          <a class="agregar__link" href="#">Job around the park 3x</a>
-        </div>  
-        <a class="agregar__link-icon" href="#">
-          <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
-        </a>
-      </div>
-      <div class="item">
-        <div class="agregar__container">
-          <label class="agregar__checkbox">
-            <input class="agregar__input" type="checkbox">
-            <span class="agregar__span"></span>
-          </label>
-          <a class="agregar__link" href="#">10 minutes meditation</a>
+    <div id="listItems" class="items-list-all">
+      <div id="container-item-solo">
+        <div class="item">
+          <div class="agregar__container">
+            <label class="agregar__checkbox">
+              <input  class="agregar__input" type="checkbox">
+              <span class="agregar__span"></span>
+            </label>
+            <a class="agregar__link agregar__link--decoration" href="#">Complete online course javaScript</a>
+          </div>  
+          <a class="agregar__link-icon" href="#">
+            <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
+          </a>
         </div>
-        <a class="agregar__link-icon" href="#">
-          <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
-        </a>
-      </div>
-      <div class="item">
-        <div class="agregar__container">
-          <label class="agregar__checkbox">
-            <input class="agregar__input" type="checkbox">
-            <span class="agregar__span"></span>
-          </label>
-          <a class="agregar__link" href="#">Read for 1 hour</a>
-        </div>  
-        <a class="agregar__link-icon" href="#">
-          <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
-        </a>
-      </div>
-      <div class="item">
-        <div class="agregar__container">
-          <label class="agregar__checkbox">
-            <input class="agregar__input" type="checkbox">
-            <span class="agregar__span"></span>
-          </label>
-          <a class="agregar__link" href="#">Pick up groceries</a>
-        </div>  
-        <a class="agregar__link-icon" href="#">
-          <img src="images/icon-cross.svg" alt="clear">
-        </a>
-      </div>
-      <div class="item">
-        <div class="agregar__container">
-          <label class="agregar__checkbox">
-            <input class="agregar__input" type="checkbox">
-            <span class="agregar__span"></span>
-          </label>
-          <a class="agregar__link" href="#">Complete Todo App on Frontend</a>
-        </div>  
-        <a class="agregar__link-icon" href="#">
-          <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
-        </a>
+        <div class="item">
+          <div class="agregar__container">
+            <label class="agregar__checkbox">
+              <input id="check" class="agregar__input" type="checkbox">
+              <span class="agregar__span"></span>
+            </label>
+            <a class="agregar__link" href="#">Job around the park 3x</a>
+          </div>  
+          <a class="agregar__link-icon" href="#">
+            <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
+          </a>
+        </div>
+        <div class="item">
+          <div class="agregar__container">
+            <label class="agregar__checkbox">
+              <input class="agregar__input" type="checkbox">
+              <span class="agregar__span"></span>
+            </label>
+            <a class="agregar__link" href="#">10 minutes meditation</a>
+          </div>
+          <a class="agregar__link-icon" href="#">
+            <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
+          </a>
+        </div>
+        <div class="item">
+          <div class="agregar__container">
+            <label class="agregar__checkbox">
+              <input class="agregar__input" type="checkbox">
+              <span class="agregar__span"></span>
+            </label>
+            <a class="agregar__link" href="#">Read for 1 hour</a>
+          </div>  
+          <a class="agregar__link-icon" href="#">
+            <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
+          </a>
+        </div>
+        <div class="item">
+          <div class="agregar__container">
+            <label class="agregar__checkbox">
+              <input class="agregar__input" type="checkbox">
+              <span class="agregar__span"></span>
+            </label>
+            <a class="agregar__link" href="#">Pick up groceries</a>
+          </div>  
+          <a class="agregar__link-icon" href="#">
+            <img src="images/icon-cross.svg" alt="clear">
+          </a>
+        </div>
+        <div class="item">
+          <div class="agregar__container">
+            <label class="agregar__checkbox">
+              <input class="agregar__input" type="checkbox">
+              <span class="agregar__span"></span>
+            </label>
+            <a class="agregar__link" href="#">Complete Todo App on Frontend</a>
+          </div>  
+          <a class="agregar__link-icon" href="#">
+            <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
+          </a>
+        </div>
       </div>
       <div class="item actions">
         <div class="container-list">
@@ -146,6 +150,7 @@
   </div>
 
   <script src="js/index.js" type="module"></script>
+  <script src="js/agregar.js"></script>
 </div>
 </body>
 </html>

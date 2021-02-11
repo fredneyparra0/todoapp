@@ -113,6 +113,13 @@ body.theme-light .items-list-all {
     margin-left: 20px;
 }
 
+.agregar__link--decoration {
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    text-decoration: line-through;
+}
+
 .agregar__checkbox {
     position: relative;
     width: 25px;
@@ -132,6 +139,10 @@ body.theme-light .items-list-all {
     height: 100%;
     opacity: 0;
     cursor: pointer;
+}
+
+.agregar__formulario {
+    width: 85%;
 }
 
 .agregar__input-text {
