@@ -104,7 +104,6 @@ body.theme-light .items-list-all {
 
 .size {
     width: 100%;
-    justify-content: space-between;
 }
 
 .agregar__link {
@@ -114,9 +113,6 @@ body.theme-light .items-list-all {
 }
 
 .agregar__link--decoration {
-    text-decoration: none;
-    color: white;
-    margin-left: 20px;
     text-decoration: line-through;
 }
 
@@ -134,7 +130,7 @@ body.theme-light .items-list-all {
     border-radius: 3px;
 }
 
-.agregar__input {
+.agregar__input, .agregar__input--first{
     width: 100%;
     height: 100%;
     opacity: 0;
@@ -142,7 +138,8 @@ body.theme-light .items-list-all {
 }
 
 .agregar__formulario {
-    width: 85%;
+    width: 100%;
+    margin: 0 0 0 15px;
 }
 
 .agregar__input-text {
@@ -197,7 +194,17 @@ body.theme-light .items-list-all {
     border-radius: inherit;
     transform: scale(1);
 }
-
+.agregar__input--first:checked + .agregar__span {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#57ddff, #c058f3);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    border-radius: inherit;
+    transform: scale(1);
+}
 /*=======================
 =======   ITEMS LIST ALL
 =======================*/
@@ -211,7 +218,7 @@ body.theme-light .items-list-all {
     border-top-right-radius: 5px;
 }
 
-.items-list-all .item:last-child {
+.items-list-all .item-actions:last-child {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
