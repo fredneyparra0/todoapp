@@ -1,94 +1,97 @@
 const// Variables
-      input = document.getElementById('inputAgregar'),
-      formularioAgregar = document.getElementById('formularioAgregar'),
-      itemList = document.getElementById('container-item-solo');
-      
-      // Evento Agregar
-      formularioAgregar.addEventListener('submit',(e) => {
-    e.preventDefault();
-    // Crear elementos
-    const divItem = document.createElement('div');
-    divItem.className = 'item';
-    // div .container
-    const agregarContainer = document.createElement('div');
-    agregarContainer.className = 'agregar__container';
-    // label
-    const agregarCheckbox = document.createElement('label');
-    agregarCheckbox.className = 'agregar__checkbox';
-    // input checkbox
-    const agregarInput = document.createElement('input');
-    agregarInput.className = 'agregar__input';
-    agregarInput.setAttribute('type','checkbox');
-    // span check
-    const agregarSpan = document.createElement('span');
-    agregarSpan.className = 'agregar__span';
-    // text item
-    const agregarLink = document.createElement('a');
-     agregarLink.className = 'agregar__link';
-     agregarLink.setAttribute('href','#');
-    // link icon
-    const agregarLinkIcon = document.createElement('a');
-    agregarLinkIcon.className = 'agregar__link-icon';
-    agregarLinkIcon.setAttribute('href','#');
-    // Icon
-    const agregarIco = document.createElement('img');
-    agregarIco.className = 'agregar__icon';
-    agregarIco.setAttribute('src','images/icon-cross.svg');
-    agregarIco.setAttribute('alt','clear');
+  input = document.getElementById('inputAgregar'),
+  formularioAgregar = document.getElementById('formularioAgregar'),
+  itemList = document.getElementById('container-item-solo');
     
-divItem.appendChild(agregarContainer);
-    agregarContainer.appendChild(agregarCheckbox);
-    agregarCheckbox.appendChild(agregarInput);
-        agregarCheckbox.appendChild(agregarSpan);
-    agregarContainer.appendChild(agregarLink);
-    agregarLink.textContent = input.value;
-    divItem.appendChild(agregarLinkIcon);
-    agregarLinkIcon.appendChild(agregarIco);
+formularioAgregar.addEventListener('submit', (e) => {
+  e.preventDefault();
+    
+  const elementHtml = () => {
+    // item
+    const item = document.createElement('div');
+    item.className = 'item';
 
-itemList.appendChild(divItem);
+    // container--label--input--span--a
+    const divContainer = document.createElement('div');
+    divContainer.className = 'agregar__container';
 
-const checkFirst = document.querySelector('.agregar__input--first');
+    const labelAgregar = document.createElement('label');
+    labelAgregar.className = 'agregar__checkbox';
+      
+    const inputLabel = document.createElement('input');
+    inputLabel.className = 'agregar__input';
+    inputLabel.setAttribute('type','checkbox');
 
-            if (checkFirst.checked === true) {
-                agregarLink.classList.toggle('agregar__link--decoration'); 
-                agregarInput.setAttribute('checked', true);  
-            }
+    const spanLabel = document.createElement('span');
+    spanLabel.className = 'agregar__span';
+
+    const aAgregar = document.createElement('a');
+    aAgregar.className = 'agregar__link';
+    aAgregar.textContent = input.value;
+    aAgregar.setAttribute('href','#');
+
+    labelAgregar.appendChild(inputLabel);
+    labelAgregar.appendChild(spanLabel);
+    divContainer.appendChild(labelAgregar);
+    divContainer.appendChild(aAgregar);
+
+    // a--img
+    const aIcon = document.createElement('a');
+    aIcon.className = 'agregar__link-icon';
+    aIcon.setAttribute('href','#');
+
+    const imgIcon = document.createElement('img');
+    imgIcon.className = 'agregar__icon';
+    imgIcon.setAttribute('src','images/icon-cross.svg');
+
+    aIcon.appendChild(imgIcon);
+
+    item.appendChild(divContainer);
+    item.appendChild(aIcon);
+
+    itemList.appendChild(item);
+
+    //check, nocheck
+    const checkFirst = document.querySelector('.agregar__input--first');
+
+    if (checkFirst.checked === true) {
+      aAgregar.classList.toggle('agregar__link--decoration'); 
+      inputLabel.setAttribute('checked', true);  
+    }
             
-input.value = '';
-});
+  };
+  elementHtml();
 
-// line-thought
-const check = document.querySelectorAll('.agregar__input');
+  const del = document.querySelectorAll('.agregar__link-icon');
+
+    del.forEach(function (element) {
+        element.addEventListener('click', function () {
+            const delpadre = this.closest('.item');
+            delpadre.remove();
+        });
+    });
+
+    const check = document.querySelectorAll('.agregar__input');
         
-check.forEach(function (element) {
-    element.addEventListener('click', function () {
+    check.forEach(function (element) {
+      element.addEventListener('click', function () {
         const ancestro = this.closest('.agregar__container');
         const hijoAncestro = ancestro.querySelector('.agregar__link');
         hijoAncestro.classList.toggle('agregar__link--decoration');
-
-        // determinar si esta checkeado o no
-// const checkFirst = document.querySelector('.agregar__input--first');
-
-//         checkFirst.addEventListener('click', () => {
-//             if (checkFirst.checked === true) {
-//                 const padreAnterior = this.closest('.agregar__container');
-//                 padreAnterior.classList.toggle('agregar__link--decoration');
-//             }else if (checkFirst.checked === false) {
-//                 agregarLink.classList.toggle('agregar__link');
-//             }else {
-//                 console.log('no funciona');
-//             }
-//         });
+    
+            
+         });
      });
- });
 
-// eliminar elemento 
-// const del = document.querySelectorAll('.agregar__link-icon');
+  input.value = '';
+});
 
-// del.forEach(function (element) {
-//     element.addEventListener('click', function () {
-//         const delpadre = this.closest('.item');
-//         delpadre.remove();
-//     });
-// });
-        
+// //  eliminar elemento ////// DE MOMENTO NO ES NECESARIO
+//  const del = document.querySelectorAll('.agregar__link-icon');
+
+//  del.forEach(function (element) {
+//      element.addEventListener('click', function () {
+//          const delpadre = this.closest('.item');
+//          delpadre.remove();
+//      });
+//  });
