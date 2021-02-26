@@ -1,9 +1,3 @@
-import {
-    THEME_PROPS_LS,
-    THEME_CLASS_DEFAULT,
-    CLASS_NAME_THEME
-} from "./constants.js";
-
 let currentTheme = null;
 var imgChangeTheme = document.body.querySelector(".container .title img");
 
