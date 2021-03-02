@@ -5,6 +5,7 @@ const// Variables
   checkFirst = document.querySelector('.agregar__input--first'),
   clearAll = document.querySelector('span#clearAll');
 
+
 // Agregar elemento desde input
 formularioAgregar.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -15,8 +16,6 @@ formularioAgregar.addEventListener('submit', (e) => {
   };
   itemList.appendChild(crearNuevaTareaDOM(nuevaTarea));
   guardarTareaLocalStorage(nuevaTarea);
-
-  // cambiarCheck();
   input.value = '';
 });
 // Agregar elementos que se encuentran el localStorage
@@ -30,6 +29,7 @@ const cargaRapida = () => {
     });
 
     itemList.appendChild(fragmentNewItems);
+    // eliminarElementoDomLs()
   });
 }
 cargaRapida();
@@ -50,7 +50,7 @@ const crearNuevaTareaDOM = function (nuevaTarea) {
       <a class="agregar__link" href="#">${nuevaTarea.titulo}</a>
     </div>
     <a class="agregar__link-icon" href="#">
-      <img class="agregar__link-icon" src="images/icon-cross.svg" alt="clear">
+      <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
     </a>
   `;
   // Variables elemento div.item
@@ -61,9 +61,27 @@ const crearNuevaTareaDOM = function (nuevaTarea) {
     decoracionTexto.classList.add('agregar__link--decoration');
     check.setAttribute('checked', true);
   }
+
+  const del = elementoDiv.querySelector('.agregar__link-icon');
+  del.addEventListener('click', eliminarElementoDomLs(elementoDiv, nuevaTarea.id) );
+
   // Agregar lineTought
   check.addEventListener('click', manejarCheckEnTareasAgregadas(decoracionTexto, nuevaTarea.id) );
   return elementoDiv;
+}
+
+function eliminarElementoDomLs (elementoDiv, id) {
+  return function () {
+    elementoDiv.remove();
+    eliminarTareaLs(id);
+  }
+}
+
+function eliminarTareaLs(id) {
+  const recibirValores = recibirValoresLocalStorage();
+  const indexValor = recibirValores.findIndex(tarea => tarea.id === id); // Busca el primer valor en base a una condición devolviendo el indice del array sino consigue devuelve -1
+  recibirValores.splice(indexValor, 1);
+  guardarTareasLocalStorage(recibirValores);
 }
 
 function manejarCheckEnTareasAgregadas(decoracionTexto, id) {
@@ -120,3 +138,29 @@ function generateUUID() {
   });
   return uuid;
 }
+
+
+// Prueba eliminar elementos del dom y ls
+
+  // Capturar ID
+  // Eliminar dom
+
+
+// function eliminarElementoDomLs () {
+//   const del = document.querySelectorAll('.agregar__link-icon');
+//   const recibirValores = recibirValoresLocalStorage();
+//   del.forEach(function (element) {
+//     element.addEventListener('click', function () {
+//       const delPadre = this.closest('.item');
+//       const atributo = delPadre.getAttribute('id');
+//       const ifAtributo = recibirValores.findIndex(tarea => tarea.id === atributo); // Busca el primer valor en base a una condición devolviendo el indice del array sino consigue devuelve -1
+//       recibirValores.splice(ifAtributo,1);
+//       guardarTareasLocalStorage(recibirValores)
+//       delPadre.remove();
+//     });
+//   });
+// }
+
+
+// items.find(tarea => tarea.id === id); // Busca el primer valor en base a una condición sino consigue devuelve undefined
+// items.filter(tarea => tarea.id === id); // Busca los valores en base a una condición sino consigue devuelve array vacio
