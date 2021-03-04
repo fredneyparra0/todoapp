@@ -3,9 +3,9 @@ const// Variables
   formularioAgregar = document.getElementById('formularioAgregar'),
   itemList = document.getElementById('container-item-solo'),
   checkFirst = document.querySelector('.agregar__input--first'),
-  clearAll = document.querySelector('span#clearAll');
-
-
+  clearAll = document.querySelector('span#clearAll'),
+  itemsRestantes = document.querySelector('#itemsRestantes');
+  
 // Agregar elemento desde input
 formularioAgregar.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -33,6 +33,14 @@ const cargaRapida = () => {
   });
 }
 cargaRapida();
+
+clearAll.addEventListener('click', function () {
+  const todosElementos = document.querySelectorAll('#container-item-solo .item .agregar__input:checked');
+  todosElementos.forEach(element => element.closest('.item').remove());
+  const valoresDeLs = recibirValoresLocalStorage();
+  valoresDeLs.find(element => /*element.id === todosElementos*/ console.log(element.id) )
+  // console.log(todosElementos);
+});
 
 
 //Crear Elemento HTML
@@ -67,20 +75,25 @@ const crearNuevaTareaDOM = function (nuevaTarea) {
 
   // Agregar lineTought
   check.addEventListener('click', manejarCheckEnTareasAgregadas(decoracionTexto, nuevaTarea.id) );
+
+  // pruebaContador()
   return elementoDiv;
 }
 
 function eliminarElementoDomLs (elementoDiv, id) {
   return function () {
     elementoDiv.remove();
-    eliminarTareaLs(id);
+    eliminarTareaLs([id]);
+    // pruebaContador();
   }
 }
 
-function eliminarTareaLs(id) {
+function eliminarTareaLs(idArrays) {
   const recibirValores = recibirValoresLocalStorage();
-  const indexValor = recibirValores.findIndex(tarea => tarea.id === id); // Busca el primer valor en base a una condición devolviendo el indice del array sino consigue devuelve -1
-  recibirValores.splice(indexValor, 1);
+  idArrays.forEach(id => {
+    const indexValor = recibirValores.findIndex(tarea => tarea.id === id); // Busca el primer valor en base a una condición devolviendo el indice del array sino consigue devuelve -1
+    recibirValores.splice(indexValor, 1);
+  });
   guardarTareasLocalStorage(recibirValores);
 }
 
@@ -119,14 +132,14 @@ const recibirValoresLocalStorage = () => {
   return parse;
 }
 // Eliminar todos los elementos de la lista // FALTA VOLVER MENOS LARGO
-clearAll.addEventListener('click', function () {
-  const items = this.closest('.items-list-all');
-  const hijoItem = items.querySelector('#container-item-solo');
-  const itemDelAll = hijoItem.querySelectorAll('div.item');
-  itemDelAll.forEach(element => {
-    element.remove();
-  });
-});
+// clearAll.addEventListener('click', function () {
+//   const items = this.closest('.items-list-all');
+//   const hijoItem = items.querySelector('#container-item-solo');
+//   const itemDelAll = hijoItem.querySelectorAll('div.item');
+//   itemDelAll.forEach(element => {
+//     element.remove();
+//   });
+// });
 
 
 function generateUUID() {
@@ -164,3 +177,9 @@ function generateUUID() {
 
 // items.find(tarea => tarea.id === id); // Busca el primer valor en base a una condición sino consigue devuelve undefined
 // items.filter(tarea => tarea.id === id); // Busca los valores en base a una condición sino consigue devuelve array vacio
+
+
+// function pruebaContador () {
+//   const valoresDelLocalStorage = recibirValoresLocalStorage().length;
+//     itemsRestantes.textContent = `${valoresDelLocalStorage} items left`;
+// }    
