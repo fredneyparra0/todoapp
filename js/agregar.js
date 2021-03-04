@@ -27,8 +27,8 @@ const cargaRapida = () => {
       const divFuncion = crearNuevaTareaDOM(element);
       fragmentNewItems.appendChild(divFuncion);
     });
-
     itemList.appendChild(fragmentNewItems);
+    pruebaContador()
     // eliminarElementoDomLs()
   });
 }
@@ -38,7 +38,10 @@ clearAll.addEventListener('click', function () {
   const todosElementos = document.querySelectorAll('#container-item-solo .item .agregar__input:checked');
   todosElementos.forEach(element => element.closest('.item').remove());
   const valoresDeLs = recibirValoresLocalStorage();
-  valoresDeLs.find(element => /*element.id === todosElementos*/ console.log(element.id) )
+  const filtroArray = valoresDeLs.filter(tareasGuardar => tareasGuardar.check !== true);
+  guardarTareasLocalStorage(filtroArray);
+  console.log(filtroArray);
+  // valoresDeLs.find(element => /*element.id === todosElementos*/ console.log(element.id) )
   // console.log(todosElementos);
 });
 
@@ -119,10 +122,12 @@ function guardarTareaLocalStorage(nuevaTarea) {
   const itemsListLS = recibirValoresLocalStorage();
   itemsListLS.push(nuevaTarea);
   localStorage.setItem(ITEMS_PROPS_LS, JSON.stringify(itemsListLS)); // Sobreescribir LS de items
+  pruebaContador()
 }
 
 function guardarTareasLocalStorage(arrayTareas) {
   localStorage.setItem(ITEMS_PROPS_LS, JSON.stringify(arrayTareas)); // Sobreescribir LS de items
+  pruebaContador()
 }
 
 // Reconvertir de JSON a objeto
@@ -179,7 +184,7 @@ function generateUUID() {
 // items.filter(tarea => tarea.id === id); // Busca los valores en base a una condición sino consigue devuelve array vacio
 
 
-// function pruebaContador () {
-//   const valoresDelLocalStorage = recibirValoresLocalStorage().length;
-//     itemsRestantes.textContent = `${valoresDelLocalStorage} items left`;
-// }    
+function pruebaContador () {
+  const valoresDelLocalStorage = recibirValoresLocalStorage().length;
+    itemsRestantes.textContent = `${valoresDelLocalStorage} items left`;
+}    
