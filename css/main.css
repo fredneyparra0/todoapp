@@ -238,6 +238,7 @@ body.theme-light .items-list-all {
 =======================*/
 .item-font {
     font-size: 12px;
+    cursor: pointer;
 }
 
 .blue {
@@ -306,4 +307,9 @@ body.theme-light .items-list-all {
     }
 }
 
-
+/*=======================
+=======   GLOBAL
+=======================*/
+.hidden {
+    display: none;
+}

@@ -136,16 +136,6 @@ const recibirValoresLocalStorage = () => {
   const parse = JSON.parse(localStorage.getItem(ITEMS_PROPS_LS));
   return parse;
 }
-// Eliminar todos los elementos de la lista // FALTA VOLVER MENOS LARGO
-// clearAll.addEventListener('click', function () {
-//   const items = this.closest('.items-list-all');
-//   const hijoItem = items.querySelector('#container-item-solo');
-//   const itemDelAll = hijoItem.querySelectorAll('div.item');
-//   itemDelAll.forEach(element => {
-//     element.remove();
-//   });
-// });
-
 
 function generateUUID() {
   let dt = new Date().getTime();
@@ -157,34 +147,57 @@ function generateUUID() {
   return uuid;
 }
 
-
-// Prueba eliminar elementos del dom y ls
-
-  // Capturar ID
-  // Eliminar dom
-
-
-// function eliminarElementoDomLs () {
-//   const del = document.querySelectorAll('.agregar__link-icon');
-//   const recibirValores = recibirValoresLocalStorage();
-//   del.forEach(function (element) {
-//     element.addEventListener('click', function () {
-//       const delPadre = this.closest('.item');
-//       const atributo = delPadre.getAttribute('id');
-//       const ifAtributo = recibirValores.findIndex(tarea => tarea.id === atributo); // Busca el primer valor en base a una condición devolviendo el indice del array sino consigue devuelve -1
-//       recibirValores.splice(ifAtributo,1);
-//       guardarTareasLocalStorage(recibirValores)
-//       delPadre.remove();
-//     });
-//   });
-// }
-
-
-// items.find(tarea => tarea.id === id); // Busca el primer valor en base a una condición sino consigue devuelve undefined
-// items.filter(tarea => tarea.id === id); // Busca los valores en base a una condición sino consigue devuelve array vacio
-
-
 function pruebaContador () {
   const valoresDelLocalStorage = recibirValoresLocalStorage().length;
     itemsRestantes.textContent = `${valoresDelLocalStorage} items left`;
-}    
+}
+
+document.querySelectorAll('div.container-list span.item-font[class*=action-filter]').forEach(actionElement => {
+  actionElement.addEventListener('click', function() {
+    document.querySelectorAll(".item.actions [class*=action-filter].blue").forEach(element => element.classList.remove("blue"));
+    switch (this.textContent) {
+      case "All":
+        filterAllItemsToShowDOM();
+        break;
+      
+      case "Completed":
+        filterCompletedItemsToShowDOM();
+        break;
+      
+      case "Active":
+        filterActiveItemsToShowDOM();
+        break;
+    
+      default:
+        filterAllItemsToShowDOM();
+        break;
+    }
+  });
+})
+
+function filterAllItemsToShowDOM() {
+  document.querySelectorAll("#container-item-solo div.item").forEach(element => element.classList.remove("hidden"));
+  document.querySelectorAll(".item.actions .action-filter-all").forEach(element => element.classList.add("blue"));
+}
+
+function filterActiveItemsToShowDOM() {
+  document.querySelectorAll("#container-item-solo div.item").forEach(element => {
+    const inputCheck = element.querySelector("input");
+
+    !inputCheck.checked ?
+      element.classList.remove("hidden") :
+      element.classList.add("hidden");
+  });
+  document.querySelectorAll(".item.actions .action-filter-active").forEach(element => element.classList.add("blue"));
+}
+
+function filterCompletedItemsToShowDOM() {
+  document.querySelectorAll("#container-item-solo div.item").forEach(element => {
+    const inputCheck = element.querySelector("input");
+
+    inputCheck.checked ?
+      element.classList.remove("hidden") :
+      element.classList.add("hidden");
+  });
+  document.querySelectorAll(".item.actions .action-filter-completed").forEach(element => element.classList.add("blue"));
+}
