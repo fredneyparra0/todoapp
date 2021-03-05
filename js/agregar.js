@@ -45,49 +45,61 @@ clearAll.addEventListener('click', function () {
   // console.log(todosElementos);
 });
 
-
 //Crear Elemento HTML
 const crearNuevaTareaDOM = function (nuevaTarea) {
-  const elementoDiv = document.createElement('div');
-  elementoDiv.className = 'item';
-  // elementoDiv.setAttribute("id", nuevaTarea.id);
-  elementoDiv.innerHTML = `
+  const itemElement = document.createElement('div');
+  itemElement.className = 'item';
+  itemElement.innerHTML = getHTMLStringForNewItem(nuevaTarea.titulo);
+  
+  const { itemTextElement, checkElement, deleteElement, filterActived } = getVariablesForNewItem(itemElement);
+  
+  if (nuevaTarea.check) {
+    itemTextElement.classList.add('agregar__link--decoration');
+    checkElement.setAttribute('checked', true);
+    filterActived === "Active" && itemElement.classList.add("hidden");
+  } else {
+    filterActived === "Completed" && itemElement.classList.add("hidden");
+  }
+
+  loadEventsForNewItem({deleteElement, itemElement, nuevaTarea, checkElement, itemTextElement});
+
+  return itemElement;
+}
+
+function getVariablesForNewItem(itemElement) {
+  return {
+    itemTextElement: itemElement.querySelector('.agregar__link'),
+    checkElement: itemElement.querySelector('.agregar__input'),
+    deleteElement: itemElement.querySelector('.agregar__link-icon'),
+    filterActived: document.querySelector(".item.actions [class*=action-filter].blue").textContent
+  };
+}
+
+function loadEventsForNewItem(data) {
+  data.deleteElement.addEventListener('click', eliminarElementoDomLs(data.itemElement, data.nuevaTarea.id));
+  data.checkElement.addEventListener('click', manejarCheckEnTareasAgregadas(data.itemTextElement, data.nuevaTarea.id));
+}
+
+function getHTMLStringForNewItem(titulo) {
+  return `
     <div class="agregar__container">
       <label class="agregar__checkbox">
         <input class="agregar__input" type="checkbox">
         <span class="agregar__span"></span>
         </input>
       </label>
-      <a class="agregar__link" href="#">${nuevaTarea.titulo}</a>
+      <a class="agregar__link" href="#">${titulo}</a>
     </div>
     <a class="agregar__link-icon" href="#">
       <img class="agregar__icon" src="images/icon-cross.svg" alt="clear">
     </a>
   `;
-  // Variables elemento div.item
-  const decoracionTexto = elementoDiv.querySelector('.agregar__link'),
-    check = elementoDiv.querySelector('.agregar__input');
-  // Agregar check o noCheck
-  if (nuevaTarea.check) {
-    decoracionTexto.classList.add('agregar__link--decoration');
-    check.setAttribute('checked', true);
-  }
-
-  const del = elementoDiv.querySelector('.agregar__link-icon');
-  del.addEventListener('click', eliminarElementoDomLs(elementoDiv, nuevaTarea.id) );
-
-  // Agregar lineTought
-  check.addEventListener('click', manejarCheckEnTareasAgregadas(decoracionTexto, nuevaTarea.id) );
-
-  // pruebaContador()
-  return elementoDiv;
 }
 
 function eliminarElementoDomLs (elementoDiv, id) {
   return function () {
     elementoDiv.remove();
     eliminarTareaLs([id]);
-    // pruebaContador();
   }
 }
 
@@ -130,7 +142,6 @@ function guardarTareasLocalStorage(arrayTareas) {
   pruebaContador()
 }
 
-// Reconvertir de JSON a objeto
 const recibirValoresLocalStorage = () => {
   if (!localStorage.getItem(ITEMS_PROPS_LS)) guardarTareasLocalStorage([]);
   const parse = JSON.parse(localStorage.getItem(ITEMS_PROPS_LS));
